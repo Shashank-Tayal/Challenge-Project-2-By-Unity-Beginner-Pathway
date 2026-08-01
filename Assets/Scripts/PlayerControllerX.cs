@@ -5,6 +5,7 @@ public class PlayerControllerX : MonoBehaviour
 {
     public GameObject dogPrefab;
     public InputAction fireAction;
+    private float timeAlreadyPassed;
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +17,10 @@ public class PlayerControllerX : MonoBehaviour
     void Update()
     {
         // On spacebar press, send dog
-        if (fireAction.triggered)
+        if ((fireAction.triggered) && ((Time.time - timeAlreadyPassed) > 1.00f))
         {
             Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
+            timeAlreadyPassed = Time.time;
         }
     }
 }
